@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BeFoot Int</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    
+    
+    <!-- Twitter fragment -->
+    <string name="twitter_top_title">Follow our Belgian Internationals</string>
+    <string name="twitter_icon_descr">Twitter icon</string>
+    <string name="tweet_icon">Profile picture</string>
+    <string name="default_userName">Sinistral sin</string>
+	<string name="default_tweet">This text is maximum 160 character long. So this default text should be as well. This text is maximum 160 character long. So this default text should be also..</string>
+	<string name="default_date">21/03/2012 23:45</string>
+</resources>
