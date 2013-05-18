@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cazamundo.android.befootint.fragments.top.MainTweetFragment;
+import com.cazamundo.android.befootint.twitter.TweetBuilder;
 
 public class TopActivity extends FragmentActivity {
 
@@ -76,8 +77,9 @@ public class TopActivity extends FragmentActivity {
 			// below) with the page number as its lone argument.
 			
 			if (position == 0){
-				Fragment fragment = new MainTweetFragment();
-				return fragment;
+				TweetBuilder tweetBuilder = new TweetBuilder();
+				return tweetBuilder.getFragment();
+				
 			}if (position == 2) {
 				Fragment fragment = new DummySectionFragment();
 				Bundle args = new Bundle();

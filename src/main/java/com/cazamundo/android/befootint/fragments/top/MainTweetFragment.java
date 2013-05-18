@@ -12,26 +12,38 @@ import android.widget.TextView;
 import com.cazamundo.android.befootint.R;
 
 public class MainTweetFragment extends Fragment {
-
+	
+	public static final String TWEET_TEXT = "tweet_text";
+	
+	private LayoutInflater inflater;
+	private ViewGroup container;
+	
+	private View mainView;
+	private LinearLayout tweetContainer;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.twitter_top_fragment, container,
-				false);
-		LinearLayout tweetContainer = (LinearLayout) view.findViewById(R.id.tweetContainer);
 		
-		RelativeLayout tweetView = (RelativeLayout) inflater.inflate(R.layout.tweet, null);
-		tweetContainer.addView(tweetView);
+		this.inflater = inflater;
+		this.container = container;
+		init();
 		
-		loopTweets(inflater,tweetContainer);
-		
-		return view;
+		return mainView;
 	}
 
-	private void loopTweets(LayoutInflater inflater, LinearLayout tweetContainer) {
+	private void init() {
+		mainView = inflater.inflate(R.layout.twitter_top_fragment, container,
+				false);
+		tweetContainer = (LinearLayout) mainView.findViewById(R.id.tweetContainer);
+		
+		loopTweets();		
+	}
+
+	private void loopTweets() {
 		
 		RelativeLayout tweetLayout;
-		int j=7;
+		int j=15;
 		for(int i=0;i<j;i++){
 			tweetLayout = (RelativeLayout) inflater.inflate(R.layout.tweet, null);
 			TextView tweetText2 = (TextView) tweetLayout.findViewById(R.id.tweetText);
