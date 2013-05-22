@@ -15,4 +15,7 @@
     <string name="default_userName">Sinistral sin</string>
 	<string name="default_tweet">This text is maximum 160 character long. So this default text should be as well. This text is maximum 160 character long. So this default text should be also..</string>
 	<string name="default_date">21/03/2012 23:45</string>
+	
+	<!-- Publicity -->
+	<string name="publicity">Publicity</string>
 </resources>
