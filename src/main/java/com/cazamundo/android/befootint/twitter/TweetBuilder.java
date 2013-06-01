@@ -4,19 +4,14 @@
 package com.cazamundo.android.befootint.twitter;
 
 import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import org.springframework.social.twitter.api.Tweet;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-
 import com.cazamundo.android.befootint.fragments.top.MainTweetFragment;
+import com.cazamundo.android.befootint.model.TweetDTO;
 
 /**
  * @author cazamundo
@@ -24,85 +19,48 @@ import com.cazamundo.android.befootint.fragments.top.MainTweetFragment;
  */
 public class TweetBuilder {
 
-	private Fragment tweetFragment;
-	private TweetServiceImpl tweetService;
-	private Bundle args;
+	public List<TweetDTO> mapTweets(List<Tweet> tweets) {
+		if (tweets != null) {
 
-	private ArrayList<String> tweetText;
-	private ArrayList<String> tweetUser;
-	private ArrayList<String> tweetCreationDate;
-	private ArrayList<String> tweetUrl;
+			List<TweetDTO> tweetDTOList = new ArrayList<TweetDTO>();
 
-	public TweetBuilder() {
-		tweetFragment = new MainTweetFragment();
-		tweetService = new TweetServiceImpl();
-		args = new Bundle();
-		tweetText = new ArrayList<String>();
-		tweetUser = new ArrayList<String>();
-		tweetCreationDate = new ArrayList<String>();
-		tweetUrl = new ArrayList<String>();
-	}
-	
-	public Fragment getFragment(){
-		
-		/**
-		 * call TwitterService - do async call
-		 */
-		List<Tweet> tweets = tweetService.refreshTweets();
-
-		// if response != null
-		args = mapResponse(tweets);
-		if (args != null) {
-			tweetFragment.setArguments(args);
-		}
-		return tweetFragment;
-	}
-
-	public Fragment getFragmentOffline() {
-
-		/**
-		 * call TwitterService - do async call
-		 */
-		List<Tweet> tweets = tweetService.refreshTweets();
-
-		// if response != null
-		args = mapResponse(tweets);
-		if (args != null) {
-			tweetFragment.setArguments(args);
-		}
-		return tweetFragment;
-	}
-
-	private Bundle mapResponse(List<Tweet> tweets) {
-
-		for (Tweet tweet : tweets) {
-			if (tweet.getText() != null && tweet.getFromUser() != null
-					&& tweet.getCreatedAt() != null
-					&& tweet.getProfileImageUrl() != null) {
-				tweetText.add(tweet.getText());
-				tweetUser.add(tweet.getFromUser());
-				tweetCreationDate.add(dateCreator(tweet.getCreatedAt()));
-				
-				tweetUrl.add(tweet.getProfileImageUrl());
-			} else {
-				System.out.println("tweet partly empty");
+			for (Tweet tweet : tweets) {
+				if (tweetValid(tweet)) {
+					TweetDTO tweetDTO = new TweetDTO();
+					tweetDTO.setText(tweet.getText());
+					tweetDTO.setUserName(tweet.getFromUser());
+					tweetDTO.setCreationDate(dateCreator(tweet.getCreatedAt()));
+					tweetDTO.setImageUrl(tweet.getProfileImageUrl());
+					tweetDTOList.add(tweetDTO);
+				} else {
+					// TODO add error
+					System.out.println("tweet partly empty");
+				}
 			}
+			return tweetDTOList;
+		} else {
+			// TODO add error
+			return null;
 		}
+	}
 
-		args.putStringArrayList(MainTweetFragment.TWEET_TEXT, tweetText);
-		args.putStringArrayList(MainTweetFragment.TWEET_USER, tweetUser);
-		args.putStringArrayList(MainTweetFragment.TWEET_CREATION_DATE,
-				tweetCreationDate);
-		args.putStringArrayList(MainTweetFragment.TWEET_URL, tweetUrl);
-		return args;
+	private boolean tweetValid(Tweet tweet) {
+		if (tweet.getText() != null && tweet.getFromUser() != null
+				&& tweet.getCreatedAt() != null
+				&& tweet.getProfileImageUrl() != null) {
+			return true;
+		}
+		return false;
 	}
 
 	private String dateCreator(Date createdAt) {
-		String date = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM).format(createdAt);
-		
+		String date = DateFormat.getDateTimeInstance(DateFormat.SHORT,
+				DateFormat.MEDIUM).format(createdAt);
+
 		// TODO calculate difference with current date
-//		String currentDate = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(new Date());
-		
+		// String currentDate = DateFormat.getDateTimeInstance(DateFormat.SHORT,
+		// DateFormat.SHORT).format(new Date());
+
 		return date;
 	}
 

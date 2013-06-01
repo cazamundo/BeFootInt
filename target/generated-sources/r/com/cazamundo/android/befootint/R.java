@@ -22,21 +22,25 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
-        public static final int twitter_bird_logo_rounded_40x29=0x7f020001;
-        public static final int twitter_bird_logo_rounded_80x57=0x7f020002;
-        public static final int twitter_icon=0x7f020003;
-        public static final int twitter_icon2=0x7f020004;
+        public static final int small_running_cheetah_logo=0x7f020001;
+        public static final int twitter_bird_logo_rounded_40x29=0x7f020002;
+        public static final int twitter_bird_logo_rounded_80x57=0x7f020003;
+        public static final int twitter_icon=0x7f020004;
+        public static final int twitter_icon2=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000d;
+        public static final int action_settings=0x7f080010;
         public static final int creationDate=0x7f080006;
+        public static final int fragmentContent=0x7f08000b;
         public static final int fragmentTitle=0x7f080008;
         public static final int pager=0x7f080000;
         public static final int pager_title_strip=0x7f080001;
+        public static final int publicity=0x7f08000c;
         public static final int section_label=0x7f080002;
-        public static final int timeline=0x7f08000b;
+        public static final int textTemplate=0x7f08000d;
+        public static final int timeline=0x7f08000e;
         public static final int tweet=0x7f080003;
-        public static final int tweetContainer=0x7f08000c;
+        public static final int tweetContainer=0x7f08000f;
         public static final int tweetText=0x7f080007;
         public static final int twitterIcon=0x7f080009;
         public static final int twitterTitle=0x7f08000a;
@@ -58,6 +62,9 @@ public final class R {
         public static final int default_date=0x7f05000a;
         public static final int default_tweet=0x7f050009;
         public static final int default_userName=0x7f050008;
+        /**  Publicity 
+         */
+        public static final int publicity=0x7f05000b;
         public static final int title_section1=0x7f050002;
         public static final int title_section2=0x7f050003;
         public static final int title_section3=0x7f050004;

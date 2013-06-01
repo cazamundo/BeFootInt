@@ -77,8 +77,8 @@ public class TopActivity extends FragmentActivity {
 			// below) with the page number as its lone argument.
 			
 			if (position == 0){
-				TweetBuilder tweetBuilder = new TweetBuilder();
-				return tweetBuilder.getFragment();
+				MainTweetFragment tweetFragment = new MainTweetFragment();
+				return tweetFragment;
 				
 			}if (position == 2) {
 				Fragment fragment = new DummySectionFragment();

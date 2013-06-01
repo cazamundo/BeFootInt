@@ -18,7 +18,7 @@ public class TweetServiceImpl {
 	
 	private List<Tweet> tweets;
 
-	TweetServiceImpl(){
+	public TweetServiceImpl(){
 		tweets = new ArrayList<Tweet>();
 	}
 	
