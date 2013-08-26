@@ -1,13 +1,14 @@
 package com.cazamundo.android.befootint.fragments.top;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.social.twitter.api.Tweet;
+import org.springframework.social.twitter.api.Twitter;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +17,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cazamundo.android.befootint.R;
+import com.cazamundo.android.befootint.TopActivity;
 import com.cazamundo.android.befootint.model.TweetDTO;
 import com.cazamundo.android.befootint.twitter.TweetBuilder;
 import com.cazamundo.android.befootint.twitter.TweetServiceImpl;
 
 public class MainTweetFragment extends Fragment {
+	
+	protected static final String TAG = MainTweetFragment.class.getSimpleName();
 
 	private LayoutInflater inflater;
 	private ViewGroup container;
@@ -28,23 +32,37 @@ public class MainTweetFragment extends Fragment {
 	private View mainView;
 	private LinearLayout tweetContainer;
 	
+//	private Twitter twitter;
 	private TweetBuilder tweetBuilder;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
+		Log.v(TAG, "onCreateView");
 
+		super.onCreate(savedInstanceState);
 		this.inflater = inflater;
 		this.container = container;
+		
 		init();
-		initialiseTweets();
 
 		return mainView;
 	}
+	
+	@Override
+	public void onStart() {
+		Log.v(TAG, "onStart");
+		super.onStart();
+		initialiseTweets();
+	}
+
 /*
  * Builds the container of the mainTweetFragment
  */
 	private void init() {
+//		this.twitter = ((TopActivity) getActivity()).getApplicationContext().getConnectionRepository().findPrimaryConnection(Twitter.class).getApi();
+//		twitter = new TwitterTemplate();
 		mainView = inflater.inflate(R.layout.twitter_top_fragment, container,
 				false);
 		tweetContainer = (LinearLayout) mainView
@@ -69,19 +87,21 @@ public class MainTweetFragment extends Fragment {
 		@Override
 		protected void onPreExecute() {
 			// before the network request begins, show a progress indicator
-			System.out.println("preExecute");
-			// showProgressDialog("Fetching timeline...");
+			Log.v(TAG, "onPreExecute");
+			((TopActivity) getActivity()).showProgressDialog("Fetching timeline...");
 		}
 
 		@Override
 		protected List<Tweet> doInBackground(Void... params) {
 			try {
+//				android.os.Debug.waitForDebugger();
 				// return twitter.timelineOperations().getHomeTimeline();
 				TweetServiceImpl tweetService = new TweetServiceImpl();
-				return tweetService.refreshTweets();
+//				return tweetService.refreshTweets();
+				return tweetService.retrieveRecentList();
 //				return twitter.listOperations().getListStatuses(88452545);
 			} catch (Exception e) {
-				// Log.e(TAG, e.getLocalizedMessage(), e);
+				 Log.e(TAG, e.getLocalizedMessage(), e);
 			}
 			return null;
 		}
@@ -89,7 +109,8 @@ public class MainTweetFragment extends Fragment {
 		@Override
 		protected void onPostExecute(List<Tweet> tweets) {
 			// after the network request completes, hide the progress indicator
-			// dismissProgressDialog();
+			Log.v(TAG,"onPostExecute");
+			((TopActivity) getActivity()).dismissProgressDialog();
 			showResult(tweetBuilder.mapTweets(tweets));
 		}
 	}

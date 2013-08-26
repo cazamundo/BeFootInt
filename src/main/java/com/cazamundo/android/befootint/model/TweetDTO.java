@@ -3,16 +3,24 @@
  */
 package com.cazamundo.android.befootint.model;
 
+import android.util.Log;
+
 /**
  * @author cazamundo
  *
  */
 public class TweetDTO {
+	private static final String TAG = "TweetDTO";
 	private String text;
 	private String userName;
 	private String description;
 	private String creationDate;
 	private String imageUrl;
+	
+	public TweetDTO(){
+		Log.v(TAG, "CONSTRUCT");
+	}
+	
 	/**
 	 * @return the text
 	 */

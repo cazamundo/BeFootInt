@@ -17,8 +17,8 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f050000;
+        public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
@@ -57,22 +57,25 @@ public final class R {
         public static final int top=0x7f070000;
     }
     public static final class string {
-        public static final int action_settings=0x7f050001;
-        public static final int app_name=0x7f050000;
-        public static final int default_date=0x7f05000a;
-        public static final int default_tweet=0x7f050009;
-        public static final int default_userName=0x7f050008;
+        public static final int action_settings=0x7f040004;
+        public static final int app_name=0x7f040003;
+        public static final int default_date=0x7f04000d;
+        public static final int default_tweet=0x7f04000c;
+        public static final int default_userName=0x7f04000b;
         /**  Publicity 
          */
-        public static final int publicity=0x7f05000b;
-        public static final int title_section1=0x7f050002;
-        public static final int title_section2=0x7f050003;
-        public static final int title_section3=0x7f050004;
-        public static final int tweet_icon=0x7f050007;
-        public static final int twitter_icon_descr=0x7f050006;
+        public static final int publicity=0x7f04000e;
+        public static final int title_section1=0x7f040005;
+        public static final int title_section2=0x7f040006;
+        public static final int title_section3=0x7f040007;
+        public static final int tweet_icon=0x7f04000a;
+        public static final int twitter_consumer_key=0x7f040000;
+        public static final int twitter_consumer_key_secret=0x7f040001;
+        public static final int twitter_icon_descr=0x7f040009;
+        public static final int twitter_oauth_callback_url=0x7f040002;
         /**  Twitter fragment 
          */
-        public static final int twitter_top_title=0x7f050005;
+        public static final int twitter_top_title=0x7f040008;
     }
     public static final class style {
         /** 

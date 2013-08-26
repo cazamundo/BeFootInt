@@ -4,10 +4,10 @@ import java.util.Locale;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -15,9 +15,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cazamundo.android.befootint.fragments.top.MainTweetFragment;
-import com.cazamundo.android.befootint.twitter.TweetBuilder;
+import com.cazamundo.android.befootint.util.AbstractAsyncActivity;
 
-public class TopActivity extends FragmentActivity {
+public class TopActivity extends AbstractAsyncActivity {
+	
+	protected static final String TAG = TopActivity.class
+			.getSimpleName();
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -36,6 +39,7 @@ public class TopActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.v(TAG, "CREATE");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_top);
 

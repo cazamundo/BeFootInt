@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="twitter_consumer_key">jJHBEjflF1BpHl14lPh3bw</string>
+    <string name="twitter_consumer_key_secret">Y4k9HiYlP0zTrRdtWojZ1HMiJfxfJpKv32nmtF2MI8Y</string>
+    <string name="twitter_oauth_callback_url">com-cazamundo-android-devils://twitter-oauth-response</string>
+
+</resources>
